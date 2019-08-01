@@ -13,22 +13,22 @@ import (
 	"time"
 )
 
-var task string
-
-func task1(task string) {
+func task1(ch chan string) {
 	time.Sleep(1 * time.Second)
-	task = "task1"
+	ch <- "task1"
 }
 
-func task2(task string) {
+func task2(ch chan string) {
 	time.Sleep(2 * time.Second)
-	task = "task2"
+	ch <- "task2"
 }
 
 // ProcessQuery is an HTTP Cloud Function.
 func ProcessQuery(w http.ResponseWriter, r *http.Request) {
-	go task1(task)
-	go task2(task)
+	ch := make(chan string)
+	go task1(ch)
+	go task2(ch)
+	task := <-ch
 	fmt.Fprint(w, task)
 }
 

@@ -13,6 +13,8 @@ import (
 	"time"
 )
 
+var task string
+
 func task1(task string) {
 	time.Sleep(1 * time.Second)
 	task = "task1"
@@ -25,7 +27,6 @@ func task2(task string) {
 
 // ProcessQuery is an HTTP Cloud Function.
 func ProcessQuery(w http.ResponseWriter, r *http.Request) {
-	var task string
 	go task1(task)
 	go task2(task)
 	fmt.Fprint(w, task)

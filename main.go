@@ -13,23 +13,25 @@ import (
 	"time"
 )
 
+// var PROJECT_ID = "develop-testing-bed"
+
 func task1(ch chan string) {
-	time.Sleep(1 * time.Second)
+	time.Sleep(0 * time.Second)
 	ch <- "task1"
 }
 
 func task2(ch chan string) {
-	time.Sleep(2 * time.Second)
+	time.Sleep(0 * time.Second)
 	ch <- "task2"
 }
 
 // ProcessQuery is an HTTP Cloud Function.
 func ProcessQuery(w http.ResponseWriter, r *http.Request) {
-	ch := make(chan string)
-	go task1(ch)
-	go task2(ch)
-	task := <-ch
-	fmt.Fprint(w, task)
+	//ch := make(chan string)
+	//go task1(ch)
+	//go task2(ch)
+	//task := <-ch
+	fmt.Fprint(w, "TESTING RESPONSE TIME FOR BASIC TEXT")
 }
 
 // [END functions_helloworld_get]

@@ -6,13 +6,11 @@ import (
 )
 
 func sum(a int, b int, c chan int) {
-
     c <- a + b // send sum to c
 }
 
 func sum1(a int, b int, c chan int) {
     time.Sleep(100 * time.Millisecond)
-
     c <- a + b // send sum to c
 }
 
